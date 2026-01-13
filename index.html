@@ -375,12 +375,238 @@
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(77, 171, 247, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Scroll animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced hover effects */
+        .project-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .doc-link {
+            transition: all 0.3s ease;
+        }
+
+        .doc-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(77, 171, 247, 0.4);
+            opacity: 1;
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(77, 171, 247, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            nav {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-secondary);
+                flex-direction: column;
+                padding: 1rem;
+                border-bottom: 2px solid var(--border);
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 99;
+            }
+
+            nav.active {
+                transform: translateX(0);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .tab {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+
+            .theme-switch {
+                margin-top: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .projects-scroll-container {
+                width: 100%;
+                height: auto;
+                max-height: none;
+                padding: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .project-item {
+                width: 100%;
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .project-item h3 {
+                font-size: 1.4rem;
+            }
+
+            .project-date {
+                font-size: 0.85rem;
+            }
+
+            .project-media img {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .project-media video {
+                width: 100%;
+            }
+
+            .doc-link {
+                display: block;
+                text-align: center;
+                margin-bottom: 0.75rem;
+            }
+
+            .skills {
+                gap: 0.75rem;
+            }
+
+            .skill-tag {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .project-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-item {
+                padding: 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <nav>
+        <div class="logo">Varun Patil</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
             <div class="tab active" data-tab="about">About</div>
             <div class="tab" data-tab="projects">Projects</div>
             <label class="theme-switch">
@@ -410,7 +636,7 @@
             <h1>My Projects</h1>
             <p>Explore my work with descriptions, key features and media.</p>
             
-            
+            <div class="projects-scroll-container">
                 <div class="project-item">
                     <div class="project-header">
                         <h3>CustomBoot-32</h3>
@@ -493,7 +719,7 @@
                         <a href="https://drive.google.com/file/d/1K7-p1llKeMCBwF9areLBGZYx5-Otd5LE/view?usp=sharing" class="doc-link">🌐 Live Demo</a>
                     </div>
                 </div>
-            
+            </div>
         </div>
     </div>
 
@@ -501,9 +727,21 @@
         const tabs = document.querySelectorAll('.tab');
         const contents = document.querySelectorAll('.content');
         const themeToggle = document.getElementById('theme-toggle');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        // Constants
+        const MOBILE_BREAKPOINT = 768;
+        let intersectionObserver = null;
         
         // Set dark mode as default on page load
         document.body.classList.add('dark-mode');
+        
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
         
         // Tab switching
         tabs.forEach(tab => {
@@ -519,6 +757,17 @@
                         content.classList.add('active');
                     }
                 });
+                
+                // Close mobile menu after selection
+                if (window.innerWidth <= MOBILE_BREAKPOINT) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+                
+                // Trigger scroll animation for newly visible content
+                setTimeout(() => {
+                    observeElements();
+                }, 100);
             });
         });
         
@@ -530,6 +779,44 @@
             } else {
                 document.body.classList.add('dark-mode');
                 document.body.classList.remove('light-mode');
+            }
+        });
+        
+        // Scroll animations
+        const observeElements = () => {
+            // Disconnect previous observer if it exists
+            if (intersectionObserver) {
+                intersectionObserver.disconnect();
+            }
+            
+            // Create new observer
+            intersectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            document.querySelectorAll('.project-item').forEach(item => {
+                item.classList.add('fade-in-up');
+                intersectionObserver.observe(item);
+            });
+        };
+        
+        // Initialize scroll animations immediately
+        observeElements();
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= MOBILE_BREAKPOINT) {
+                if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
             }
         });
     </script>
