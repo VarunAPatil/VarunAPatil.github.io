@@ -2,373 +2,181 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=600, initial-scale=1">
     <title>Varun Patil</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2d2d2d;
-            --text-primary: #f8f9fa;
-            --text-secondary: #adb5bd;
-            --accent: #4dabf7;
-            --border: #495057;
-        }
-
-        .light-mode {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --text-primary: #212529;
-            --text-secondary: #6c757d;
-            --accent: #007bff;
-            --border: #dee2e6;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            line-height: 1.6;
-        }
-        
-        body.dark-mode {
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2d2d2d;
-            --text-primary: #f8f9fa;
-            --text-secondary: #adb5bd;
-            --accent: #4dabf7;
-            --border: #495057;
-        }
-
-        header {
-            background-color: var(--bg-secondary);
-            border-bottom: 2px solid var(--border);
-            padding: 0.75rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent);
-        }
-
-        nav {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .tab {
-            cursor: pointer;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .tab:hover {
-            background-color: var(--bg-primary);
-        }
-
-        .tab.active {
-            background-color: var(--accent);
-            color: white;
-        }
-
-        .theme-switch {
-            position: relative;
-            width: 50px;
-            height: 26px;
-        }
-
-        .theme-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 26px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "🌙";
-            height: 20px;
-            width: 20px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: 0.4s;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-        }
-
-        input:checked + .slider {
-            background-color: var(--accent);
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(24px);
-            content: "☀️";
-        }
-
-        .container {
-            max-width: 1200px;
-            margin-top: 0px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .content {
-            display: none;
-        }
-
-        .content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            max-width: 680px;
+            margin: auto;
+            padding: 20px;
+            text-align: justify;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smoothing: antialiased;
+            color: #eb5d3a;
+            font-family: Palatino, Georgia, 'Times New Roman', serif;
+            background-color: #fafafa;
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 120%;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            color: #f73100;
         }
 
         h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            margin-top: 2rem;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+            padding-bottom: 0.5em;
+            border-bottom: 2px solid #eb0707;
+            color: #ff0000;
         }
 
-        p {
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+            color: #2c3e50;
         }
 
-        .projects-scroll-container {
-            height: 550px;
-            width: 70%;
-            /* align-self: center; */
-            overflow-y: auto;
-            padding: 1rem;
-            background-color: var(--bg-secondary);
-            border-radius: 12px;
-            border: 2px solid var(--border);
-            margin-top: 2rem;
-            margin-left: auto;
-            margin-right: auto;
+        p, li {
+            margin-top: 0;
+            margin-bottom: 0.6em;
+            line-height: 1.7;
         }
 
-        .projects-scroll-container::-webkit-scrollbar {
-            width: 10px;
+        a {
+            color: #a12600;
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
-        .projects-scroll-container::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-            border-radius: 10px;
+        a:hover {
+            color: #3498db;
+            text-decoration: underline;
         }
 
-        .projects-scroll-container::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 10px;
+        .profile-section {
+            margin-bottom: 2em;
         }
 
-        .projects-scroll-container::-webkit-scrollbar-thumb:hover {
-            background: #0056b3;
-            /* width: ; */
+        .profile-img {
+            float: right;
+            margin: 0px 30px 10px 0px;
+            width: 130px;
+        }
+
+        .profile-img img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.05em;
+            margin-bottom: 0.3em;
+        }
+
+        .location {
+            color: #95a5a6;
+            font-size: 0.95em;
+        }
+
+        .links {
+            margin: 1.2em 0;
+            font-weight: 500;
+        }
+
+        .links a {
+            margin-right: 1.2em;
+            padding: 0.3em 0;
+        }
+
+        .nav {
+            text-align: center;
+            font-weight: 600;
+            margin: 2em 0 2em 0;
+            font-size: 15px;
+            padding: 1em 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .nav a {
+            margin: 0 0.8em;
+            color: #cf2323;
+            transition: color 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: #2980b9;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li::before {
+            content: "– ";
+            margin-right: 0.5em;
+            color: #7f8c8d;
         }
 
         .project-item {
-            background-color: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            width: 60%;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 2.5em;
+            padding-bottom: 1.5em;
+            border-bottom: 1px solid #ecf0f1;
         }
 
         .project-item:last-child {
-            margin-bottom: 0;
+            border-bottom: none;
         }
 
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-item h3 {
-            color: var(--accent);
-            font-size: 1.8rem;
-            margin: 0;
+        .project-title {
+            font-weight: bold;
+            font-style: italic;
+            color: #ad0000;
+            font-size: 1.1em;
         }
 
         .project-date {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-style: italic;
         }
 
-        .project-media {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-            align-items: center;
+        .project-links {
+            margin-top: 0.5em;
         }
 
-        .project-media img {
-            width: 60%;
-            max-width: 650px;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border);
+        .project-links a {
+            margin-right: 1em;
+            font-size: 0.95em;
+            padding: 0.2em 0.5em;
+            background-color: #ecf0f1;
+            border-radius: 3px;
+            transition: background-color 0.2s ease;
         }
 
-        .project-media video {
-            width: 100%;
-            max-width: 650px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .project-summary {
-            margin: 1.5rem 0;
-        }
-
-        .project-summary h4 {
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .project-summary p {
-            margin-bottom: 0.8rem;
-        }
-
-        .project-docs {
-            margin-top: 1rem;
-        }
-
-        .doc-link {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+        .project-links a:hover {
+            background-color: #d5dbdb;
             text-decoration: none;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            transition: opacity 0.3s ease;
-        }
-
-        .doc-link:hover {
-            opacity: 0.8;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .highlight {
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .highlight-alt {
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        .highlight-warning {
-            color: #ffc107;
-            font-weight: bold;
-        }
-
-        .highlight-danger {
-            color: #dc3545;
-            font-weight: bold;
-        }
-
-        /* Text selection colors */
-        ::selection {
-            background-color: #22c55e;
-            color: #ffffff;
-        }
-
-        ::-moz-selection {
-            background-color: #22c55e;
-            color: #ffffff;
-        }
-
-        body.dark-mode ::selection {
-            background-color: #a855f7;
-            color: #ffffff;
-        }
-
-        body.dark-mode ::-moz-selection {
-            background-color: #a855f7;
-            color: #ffffff;
         }
 
         .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 0.8em;
+            line-height: 2;
         }
 
+<<<<<<< HEAD
         .skill-tag {
             background-color: var(--accent);
             color: white;
@@ -595,10 +403,66 @@
             .project-item {
                 padding: 0.75rem;
             }
+=======
+        .skills span {
+            display: inline-block;
+            margin-right: 1.2em;
+            margin-bottom: 0.5em;
+            color: #ff3c00;
+            font-weight: 500;
+>>>>>>> da057a4 (Changing theme completely)
         }
+
+        .skills span::before {
+            content: "▪ ";
+            color: #ff0000;
+            margin-right: 0.3em;
+        }
+
+        strong {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        /* .footer {
+            margin-top: 4em;
+            padding-top: 1.5em;
+            border-top: 2px solid #ecf0f1;
+            text-align: center;
+            font-size: 0.85em;
+            color: #95a5a6;
+        } */
+
+        @media (max-width: 640px) {
+            .profile-img {
+                float: none;
+                margin: 0 auto 1.5em auto;
+                display: block;
+                width: 140px;
+            }
+            
+            body {
+                padding: 15px;
+            }
+        }
+        ::selection {
+    background-color: #00b11d;  /* Green highlight */
+    color: white;               /* Text color when selected */
+}
+
+::-moz-selection {
+    background-color: #00b11d;  /* Firefox support */
+    color: white;
+}
+
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <header>
         <div class="logo">Varun Patil</div>
         <div class="hamburger" id="hamburger">
@@ -820,5 +684,147 @@
             }
         });
     </script>
+=======
+    <div class="nav">
+        <a href="#about">About</a> · 
+        <a href="#projects">Projects</a> · 
+        <a href="#competitions">Competitions</a> · 
+        <a href="#skills">Skills</a>
+    </div>
+
+    <section id="about" class="profile-section">
+        <div class="profile-img">
+            <img src="assets/profile.jpeg" alt="Varun Patil">
+        </div>
+
+        <h1>Varun Adinath Patil</h1>
+
+        <p class="subtitle">
+            Student · Embedded Systems Enthusiast
+        </p>
+
+        <p class="location">
+            Mumbai, Maharashtra, India
+        </p>
+
+        <div class="links">
+            <a href="mailto:vap05072006@gmail.com">Email</a>
+            <a href="https://github.com/VarunAPatil">GitHub</a>
+            <!-- <a href="https://www.linke  -->
+        </div>
+
+        <h2>About Me</h2>
+
+        <p>
+            Hi, my name is Varun. I'm a student passionate about embedded systems and hardware design, 
+            exploring the intersection of software and hardware. I work with microcontrollers, design PCBs, 
+            and write firmware that brings circuits to life. Based in Mumbai, I spend my time coding in C/C++, 
+            designing circuits, and figuring out how to make hardware do interesting things.
+        </p>
+
+        <p>
+            My interests span bootloader development, wireless communication protocols, custom development boards, 
+            and robotics. The most satisfying moment is when a board I've designed powers on successfully for the first time.
+        </p>
+
+        <p>
+            When I'm not working on projects, I enjoy learning about computer architecture, exploring new embedded 
+            technologies, and contributing to open-source hardware projects.
+        </p>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+
+        <div class="project-item">
+            <p class="project-title">CustomBoot-32</p>
+            <p class="project-date">July 2025 – September 2025</p>
+            <p>
+                A custom development board that receives firmware wirelessly using ESP32 and executes it using STM32. 
+                Designed the complete PCB from scratch, implemented a custom bootloader for firmware handling, 
+                developed wireless firmware receiving capability with custom file protocols, and integrated CRC32 
+                for data validation.
+            </p>
+            <p class="project-links">
+                <a href="https://github.com/avm1234567/Customboot-32/blob/main/Documentation/Final_DOC.pdf">📄 Documentation</a>
+                <a href="https://github.com/avm1234567/Customboot-32">💻 GitHub</a>
+                <a href="https://drive.google.com/file/d/1Z0VfDI0KjEA28zM6vQ-hMSaG2jekwzWR/view?usp=sharing">🎥 Demo</a>
+            </p>
+        </div>
+
+        <div class="project-item">
+            <p class="project-title">Blue Pill Recreation</p>
+            <p class="project-date">July 2025</p>
+            <p>
+                Recreated the STM32F103C8T6 Blue Pill development board using KiCad to gain hands-on experience 
+                with custom PCB design. Features complete STM32F103C8T6 core design with 3.3V operation, 
+                on-board 8 MHz crystal oscillator, access headers for UART and I²C communication, and 
+                detailed 3D STEP models for visualization.
+            </p>
+            <p class="project-links">
+                <a href="https://github.com/varun05050505/STM32-F103C8T6-BluePill">💻 GitHub</a>
+            </p>
+        </div>
+
+        <div class="project-item">
+            <p class="project-title">Maze Solving Bot</p>
+            <p class="project-date">October 2025 – November 2025</p>
+            <p>
+                A line-following bot with PID tuning for accurate path correction in maze navigation. 
+                Includes autonomous turn logic and object detection capabilities to push objects into 
+                designated areas. Features a web interface for seamless PID tuning, IR sensors for 
+                line following and object detection, and intelligent sensor value analysis to detect maze endpoints.
+            </p>
+            <p class="project-links">
+                <a href="https://github.com/varun05050505/Maze-solving-bot">💻 GitHub</a>
+                <a href="https://drive.google.com/file/d/1K7-p1llKeMCBwF9areLBGZYx5-Otd5LE/view?usp=sharing">🎥 Demo</a>
+            </p>
+        </div>
+    </section>
+
+    <section id="competitions">
+        <h2>Competitions</h2>
+
+        <div class="project-item">
+            <p class="project-title">Hardware Hackathon 2.0, Bangalore</p>
+            <p class="project-date">December 2025</p>
+            <p>
+               Created a base-rover system using Star-Topology wireless communication for a hardware hackathon. The rover was designed to receive commands wirelessly, navigate autonomously, and gather environmental parameters using sensors. Used Ultrasonic sensors ffor terrain mapping and ESP-NOW as the communication protocol along with SoftAP implementation.
+            </p>
+            <p class="project-links">
+                <a href="https://github.com/pushkardube/Hardware-Hackothon-2.0">💻 GitHub</a>
+            </p>
+        </div>
+
+        <div class="project-item">
+            <p class="project-title">HackFusion, SPIT</p>
+            <p class="project-date">February 2026</p>
+            <p>
+                Created ESP32-based health monitoring system with real-time data visualization and alert notifications. Another ESP32-based authenticator using RFID and infrared sensors to count people entering and exiting a room, with data visualization and alert notifications. Used telegram to log activities as well as send alerts and notifications in case of emergency. Established communication with AES-128 encryption.
+            </p>
+            <p class="project-links">
+                <a href="https://github.com/VarunAPatil/HackFusion_CustomBoot32">💻 GitHub</a>
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills">
+            <span>C/C++</span>
+            <span>Python</span>
+            <span>KiCad</span>
+            <span>STM32</span>
+            <span>ESP32</span>
+            <span>PCB Design</span>
+            <span>Embedded Systems</span>
+            <span>Firmware Development</span>
+        </div>
+    </section>
+
+    <!-- <div class="footer">
+        Last updated: February 2026
+    </div> -->
+>>>>>>> da057a4 (Changing theme completely)
 </body>
 </html>
