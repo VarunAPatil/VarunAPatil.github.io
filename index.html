@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=600, initial-scale=1">
     <title>Varun Patil</title>
     <link rel="icon" type="image/x-icon" href="assets/Varun.ico">
 
-  <style>
+    <style>
         :root {
             --bg-primary: #fafbff;
             --bg-secondary: #ffffff;
@@ -80,7 +81,8 @@
             color: var(--text-secondary);
         }
 
-        p, li {
+        p,
+        li {
             margin-top: 0;
             margin-bottom: 0.6em;
             line-height: 1.7;
@@ -117,7 +119,7 @@
             box-shadow: 0 4px 16px var(--shadow-color);
             border: 2px solid transparent;
             background: linear-gradient(var(--bg-primary), var(--bg-primary)) padding-box,
-                        linear-gradient(135deg, #ff006e, #8b00ff, #4361ee, #00d4ff) border-box;
+                linear-gradient(135deg, #ff006e, #8b00ff, #4361ee, #00d4ff) border-box;
             transition: box-shadow 0.3s ease;
         }
 
@@ -264,8 +266,10 @@
         }
 
         body.dark-mode .project-links a {
-            background: linear-gradient(135deg, #7c3aed 0%, #c77dff 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #9b3de2 100%);
             box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+            color: #0a0118;
+            font-weight: 600;
         }
 
         .project-links a:hover {
@@ -330,13 +334,12 @@
 
         /* Text selection color */
         ::selection {
-            background: linear-gradient(135deg, #ff006e 0%, #8b00ff 50%, #00d4ff 100%);
-            background-color: #4361ee;
+            background: #ff006e;
             color: white;
         }
 
         ::-moz-selection {
-            background-color: #4361ee;
+            background-color: #ff006e;
             color: white;
         }
 
@@ -357,7 +360,7 @@
                 display: block;
                 width: 140px;
             }
-            
+
             body {
                 padding: 15px;
             }
@@ -374,11 +377,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="nav">
-        <a href="#about">About</a> · 
-        <a href="#projects">Projects</a> · 
-        <a href="#competitions">Competitions</a> · 
+        <a href="#about">About</a> ·
+        <a href="#projects">Projects</a> ·
+        <a href="#competitions">Competitions</a> ·
         <a href="#skills">Skills</a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
             🌙
@@ -409,19 +413,20 @@
         <h2>About Me</h2>
 
         <p>
-            Hi, my name is Varun. I'm a student passionate about embedded systems and hardware design, 
-            exploring the intersection of software and hardware. I work with microcontrollers, design PCBs, 
-            and write firmware that brings circuits to life. Based in Mumbai, I spend my time coding in C/C++, 
+            Hi, my name is Varun. I'm a student passionate about embedded systems and hardware design,
+            exploring the intersection of software and hardware. I work with microcontrollers, design PCBs,
+            and write firmware that brings circuits to life. Based in Mumbai, I spend my time coding in C/C++,
             designing circuits, and figuring out how to make hardware do interesting things.
         </p>
 
         <p>
-            My interests span bootloader development, wireless communication protocols, custom development boards, 
-            and robotics. The most satisfying moment is when a board I've designed powers on successfully for the first time.
+            My interests span bootloader development, wireless communication protocols, custom development boards,
+            and robotics. The most satisfying moment is when a board I've designed powers on successfully for the first
+            time.
         </p>
 
         <p>
-            When I'm not working on projects, I enjoy learning about new embedded 
+            When I'm not working on projects, I enjoy learning about new embedded
             technologies, and contributing to open-source hardware projects.
         </p>
     </section>
@@ -433,13 +438,14 @@
             <p class="project-title">CustomBoot-32</p>
             <p class="project-date">July 2025 – September 2025</p>
             <p>
-                A custom development board that receives firmware wirelessly using ESP32 and executes it using STM32. 
-                Designed the complete PCB from scratch, implemented a custom bootloader for firmware handling, 
-                developed wireless firmware receiving capability with custom file protocols, and integrated CRC32 
+                A custom development board that receives firmware wirelessly using ESP32 and executes it using STM32.
+                Designed the complete PCB from scratch, implemented a custom bootloader for firmware handling,
+                developed wireless firmware receiving capability with custom file protocols, and integrated CRC32
                 for data validation.
             </p>
             <p class="project-links">
-                <a href="https://github.com/avm1234567/Customboot-32/blob/main/Documentation/Final_DOC.pdf">📄 Documentation</a>
+                <a href="https://github.com/avm1234567/Customboot-32/blob/main/Documentation/Final_DOC.pdf">📄
+                    Documentation</a>
                 <a href="https://github.com/avm1234567/Customboot-32">💻 GitHub</a>
                 <a href="https://drive.google.com/file/d/1Z0VfDI0KjEA28zM6vQ-hMSaG2jekwzWR/view?usp=sharing">🎥 Demo</a>
             </p>
@@ -449,9 +455,9 @@
             <p class="project-title">Blue Pill Recreation</p>
             <p class="project-date">July 2025</p>
             <p>
-                Recreated the STM32F103C8T6 Blue Pill development board using KiCad to gain hands-on experience 
-                with custom PCB design. Features complete STM32F103C8T6 core design with 3.3V operation, 
-                on-board 8 MHz crystal oscillator, access headers for UART and I²C communication, and 
+                Recreated the STM32F103C8T6 Blue Pill development board using KiCad to gain hands-on experience
+                with custom PCB design. Features complete STM32F103C8T6 core design with 3.3V operation,
+                on-board 8 MHz crystal oscillator, access headers for UART and I²C communication, and
                 detailed 3D STEP models for visualization.
             </p>
             <p class="project-links">
@@ -463,9 +469,9 @@
             <p class="project-title">Maze Solving Bot</p>
             <p class="project-date">October 2025 – November 2025</p>
             <p>
-                A line-following bot with PID tuning for accurate path correction in maze navigation. 
-                Includes autonomous turn logic and object detection capabilities to push objects into 
-                designated areas. Features a web interface for seamless PID tuning, IR sensors for 
+                A line-following bot with PID tuning for accurate path correction in maze navigation.
+                Includes autonomous turn logic and object detection capabilities to push objects into
+                designated areas. Features a web interface for seamless PID tuning, IR sensors for
                 line following and object detection, and intelligent sensor value analysis to detect maze endpoints.
             </p>
             <p class="project-links">
@@ -482,7 +488,10 @@
             <p class="project-title">Hardware Hackathon 2.0, Bangalore</p>
             <p class="project-date">December 2025</p>
             <p>
-               Created a base-rover system using Star-Topology wireless communication for a hardware hackathon. The rover was designed to receive commands wirelessly, navigate autonomously, and gather environmental parameters using sensors. Used Ultrasonic sensors ffor terrain mapping and ESP-NOW as the communication protocol along with SoftAP implementation.
+                Created a base-rover system using Star-Topology wireless communication for a hardware hackathon. The
+                rover was designed to receive commands wirelessly, navigate autonomously, and gather environmental
+                parameters using sensors. Used Ultrasonic sensors ffor terrain mapping and ESP-NOW as the communication
+                protocol along with SoftAP implementation.
             </p>
             <p class="project-links">
                 <a href="https://github.com/pushkardube/Hardware-Hackothon-2.0">💻 GitHub</a>
@@ -493,7 +502,10 @@
             <p class="project-title">HackFusion, SPIT</p>
             <p class="project-date">February 2026</p>
             <p>
-                Created ESP32-based health monitoring system with real-time data visualization and alert notifications. Another ESP32-based authenticator using RFID and infrared sensors to count people entering and exiting a room, with data visualization and alert notifications. Used telegram to log activities as well as send alerts and notifications in case of emergency. Established communication with AES-128 encryption.
+                Created ESP32-based health monitoring system with real-time data visualization and alert notifications.
+                Another ESP32-based authenticator using RFID and infrared sensors to count people entering and exiting a
+                room, with data visualization and alert notifications. Used telegram to log activities as well as send
+                alerts and notifications in case of emergency. Established communication with AES-128 encryption.
             </p>
             <p class="project-links">
                 <a href="https://github.com/VarunAPatil/HackFusion_CustomBoot32">💻 GitHub</a>
@@ -531,7 +543,7 @@
 
         themeToggle.addEventListener("click", () => {
             body.classList.toggle("dark-mode");
-            
+
             // Update button icon
             if (body.classList.contains("dark-mode")) {
                 themeToggle.textContent = "☀️";
@@ -543,4 +555,5 @@
         });
     </script>
 </body>
+
 </html>
