@@ -1,559 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=600, initial-scale=1">
-    <title>Varun Patil</title>
-    <link rel="icon" type="image/x-icon" href="assets/Varun.ico">
-
-    <style>
-        :root {
-            --bg-primary: #fafbff;
-            --bg-secondary: #ffffff;
-            --text-primary: #1a0b2e;
-            --text-secondary: #5a189a;
-            --text-tertiary: #7209b7;
-            --border-color: #e8e3f5;
-            --shadow-color: rgba(139, 0, 255, 0.2);
-            --gradient-start: #8b00ff;
-            --gradient-end: #4169e1;
-        }
-
-        body.dark-mode {
-            --bg-primary: #0a0118;
-            --bg-secondary: #160828;
-            --text-primary: #e8e3f5;
-            --text-secondary: #c77dff;
-            --text-tertiary: #9d4edd;
-            --border-color: #2d1b4e;
-            --shadow-color: rgba(139, 0, 255, 0.4);
-            --gradient-start: #ff006e;
-            --gradient-end: #00d4ff;
-        }
-
-        body {
-            max-width: 680px;
-            margin: auto;
-            padding: 20px;
-            text-align: justify;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            font-smoothing: antialiased;
-            color: var(--text-primary);
-            font-family: Palatino, Georgia, 'Times New Roman', serif;
-            background-color: var(--bg-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 800;
-            line-height: 120%;
-            margin-top: 1em;
-            margin-bottom: 0.5em;
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        h2 {
-            font-size: 22px;
-            font-weight: bold;
-            margin-top: 2em;
-            margin-bottom: 0.5em;
-            padding-bottom: 0.5em;
-            border-bottom: 2px solid #4169e1;
-            color: var(--text-secondary);
-        }
-
-        body.dark-mode h2 {
-            border-bottom-color: #7209b7;
-        }
-
-        h3 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 1em;
-            margin-bottom: 0.3em;
-            color: var(--text-secondary);
-        }
-
-        p,
-        li {
-            margin-top: 0;
-            margin-bottom: 0.6em;
-            line-height: 1.7;
-        }
-
-        a {
-            color: #4361ee;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        body.dark-mode a {
-            color: #7c3aed;
-        }
-
-        a:hover {
-            color: #00d4ff;
-            text-decoration: underline;
-        }
-
-        .profile-section {
-            margin-bottom: 2em;
-        }
-
-        .profile-img {
-            float: right;
-            margin: -20px 30px 0px 0px;
-            width: 140px;
-        }
-
-        .profile-img img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 16px var(--shadow-color);
-            border: 2px solid transparent;
-            background: linear-gradient(var(--bg-primary), var(--bg-primary)) padding-box,
-                linear-gradient(135deg, #ff006e, #8b00ff, #4361ee, #00d4ff) border-box;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1.05em;
-            margin-bottom: 0.3em;
-            font-weight: 500;
-        }
-
-        .location {
-            color: var(--text-tertiary);
-            font-size: 0.95em;
-        }
-
-        .links {
-            margin: 1.2em 0;
-            font-weight: 500;
-        }
-
-        .links a {
-            margin-right: 1.2em;
-            padding: 0.3em 0;
-        }
-
-        .nav {
-            text-align: center;
-            font-weight: 600;
-            margin: 2em 0 2em 0;
-            font-size: 15px;
-            padding: 1em 0;
-            border-bottom: 2px solid transparent;
-            background: linear-gradient(90deg, #ff006e 0%, #8b00ff 25%, #4361ee 75%, #00d4ff 100%) bottom/100% 2px no-repeat;
-            position: relative;
-        }
-
-        .nav a {
-            margin: 0 0.8em;
-            color: var(--text-secondary);
-            transition: all 0.2s ease;
-        }
-
-        .nav a:hover {
-            color: #4361ee;
-            transform: translateY(-2px);
-        }
-
-        body.dark-mode .nav a:hover {
-            color: #00d4ff;
-        }
-
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #4361ee, #00d4ff);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
-        }
-
-        body.dark-mode .theme-toggle {
-            background: linear-gradient(135deg, #ff006e, #8b00ff);
-            box-shadow: 0 2px 12px rgba(139, 0, 255, 0.5);
-        }
-
-        .theme-toggle:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 4px 16px rgba(67, 97, 238, 0.5);
-        }
-
-        body.dark-mode .theme-toggle:hover {
-            box-shadow: 0 4px 16px rgba(255, 0, 110, 0.6);
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        ul li::before {
-            content: "– ";
-            margin-right: 0.5em;
-            color: var(--text-tertiary);
-        }
-
-        .project-item {
-            margin-bottom: 2.5em;
-            padding-bottom: 1.5em;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .project-item:last-child {
-            border-bottom: none;
-        }
-
-        .project-title {
-            font-weight: bold;
-            font-style: italic;
-            background: linear-gradient(90deg, #8b00ff 0%, #4361ee 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.1em;
-        }
-
-        body.dark-mode .project-title {
-            background: linear-gradient(90deg, #ff006e 0%, #c77dff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .project-date {
-            color: var(--text-tertiary);
-            font-size: 0.9em;
-            font-style: italic;
-        }
-
-        .project-links {
-            margin-top: 0.5em;
-        }
-
-        .project-links a {
-            margin-right: 1em;
-            font-size: 0.95em;
-            padding: 0.4em 0.8em;
-            background: linear-gradient(135deg, #4361ee 0%, #00d4ff 100%);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            color: white;
-            font-weight: 500;
-            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.3);
-        }
-
-        body.dark-mode .project-links a {
-            background: linear-gradient(135deg, #7c3aed 0%, #9b3de2 100%);
-            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
-            color: #0a0118;
-            font-weight: 600;
-        }
-
-        .project-links a:hover {
-            background: linear-gradient(135deg, #8b00ff 0%, #4361ee 100%);
-            text-decoration: none;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139, 0, 255, 0.4);
-        }
-
-        body.dark-mode .project-links a:hover {
-            background: linear-gradient(135deg, #ff006e 0%, #8b00ff 100%);
-            box-shadow: 0 4px 12px rgba(255, 0, 110, 0.5);
-        }
-
-        .skills {
-            margin-top: 0.8em;
-            line-height: 2;
-        }
-
-        .skills span {
-            display: inline-block;
-            margin-right: 1.2em;
-            margin-bottom: 0.5em;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .skills span::before {
-            content: "●";
-            background: linear-gradient(135deg, #ff006e 0%, #8b00ff 50%, #4361ee 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-right: 0.4em;
-            font-size: 1.2em;
-        }
-
-        body.dark-mode .skills span::before {
-            background: linear-gradient(135deg, #ff006e 0%, #c77dff 50%, #00d4ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        strong {
-            font-weight: bold;
-            color: var(--text-secondary);
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        .footer {
-            margin-top: 4em;
-            padding-top: 1.5em;
-            border-top: 2px solid var(--border-color);
-            text-align: center;
-            font-size: 0.85em;
-            color: var(--text-tertiary);
-        }
-
-        /* Text selection color */
-        ::selection {
-            background: #ff006e;
-            color: white;
-        }
-
-        ::-moz-selection {
-            background-color: #ff006e;
-            color: white;
-        }
-
-        body.dark-mode ::selection {
-            background-color: #ff006e;
-            color: white;
-        }
-
-        body.dark-mode ::-moz-selection {
-            background-color: #ff006e;
-            color: white;
-        }
-
-        @media (max-width: 640px) {
-            .profile-img {
-                float: none;
-                margin: 0 auto 1.5em auto;
-                display: block;
-                width: 140px;
-            }
-
-            body {
-                padding: 15px;
-            }
-
-            .theme-toggle {
-                position: relative;
-                margin-left: 1em;
-                transform: none;
-            }
-
-            .theme-toggle:hover {
-                transform: scale(1.1);
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Varun Adinath Patil — analog electronics, biosignal interfaces, and embedded hardware.">
+  <meta name="theme-color" content="#faf9f6">
+  <title>Varun Adinath Patil</title>
+  <link rel="icon" href="assets/Varun.ico" sizes="any">
+  <style>
+    @font-face { font-family:"Latin Modern"; src:url("assets/fonts/latin-modern-regular.otf") format("opentype"); font-style:normal; font-weight:400; font-display:swap; }
+    @font-face { font-family:"Latin Modern"; src:url("assets/fonts/latin-modern-bold.otf") format("opentype"); font-style:normal; font-weight:700; font-display:swap; }
+    @font-face { font-family:"Latin Modern"; src:url("assets/fonts/latin-modern-italic.otf") format("opentype"); font-style:italic; font-weight:400; font-display:swap; }
+    :root { color-scheme:light; --paper:#faf9f6; --ink:#222522; --muted:#626760; --rule:#d9d9d2; --link:#244b69; }
+    *, *::before, *::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:18px/1.52 "Latin Modern","Times New Roman",serif; }
+    a { color:var(--link); text-underline-offset:3px; text-decoration-thickness:1px; }
+    a:hover { color:#102f47; }
+    a:focus-visible { outline:2px solid var(--link); outline-offset:3px; }
+    img { display:block; max-width:100%; }
+    .wrap { width:min(100% - 52px,820px); margin-inline:auto; }
+    .site-header { border-bottom:1px solid var(--rule); }
+    .site-header .wrap { min-height:70px; display:flex; align-items:center; justify-content:space-between; gap:16px 32px; }
+    .brand { color:var(--ink); font-size:16px; font-weight:700; text-decoration:none; white-space:nowrap; }
+    .site-nav { display:flex; flex-wrap:wrap; gap:7px 26px; font-size:15px; }
+    .site-nav a { color:var(--muted); text-decoration:none; }
+    .site-nav a:hover, .site-nav a:focus-visible { color:var(--link); text-decoration:underline; }
+    .intro { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:24px; align-items:start; padding:72px 0 68px; }
+    .eyebrow { margin:0 0 13px; color:var(--muted); font-size:15px; letter-spacing:.02em; }
+    h1,h2,h3,h4,p { margin-top:0; }
+    h1 { margin-bottom:13px; font-size:clamp(34px,5vw,48px); line-height:1.08; letter-spacing:-.025em; }
+    .lead { max-width:650px; margin:0 0 15px; font-size:clamp(21px,2.7vw,26px); line-height:1.28; }
+    .intro-note { max-width:650px; margin:0; color:#454944; }
+    .portrait { width:300px; height:375px; object-fit:cover; object-position:center; }
+    .section { padding:39px 0 0; border-top:1px solid var(--rule); scroll-margin-top:28px; }
+    .section-heading { display:flex; align-items:baseline; gap:17px; margin-bottom:28px; }
+    .section-number { color:var(--muted); font-size:13px; font-style:normal; letter-spacing:.08em; }
+    h2 { margin:0; font-size:20px; line-height:1.3; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .section-intro { max-width:680px; margin:-8px 0 34px; color:#454944; }
+    .project { padding-bottom:50px; }
+    .project + .project { padding-top:43px; border-top:1px solid var(--rule); }
+    .project-type { margin:0 0 5px; color:var(--muted); font-size:15px; font-style:italic; }
+    h3 { margin:0 0 11px; font-size:26px; line-height:1.18; }
+    .project p:not(.project-type) { max-width:690px; margin-bottom:11px; }
+    .project-links { display:flex; flex-wrap:wrap; gap:5px 20px; font-size:16px; }
+    figure { margin:22px 0 0; }
+    figure img { width:auto; height:auto; max-width:100%; max-height:500px; margin-inline:auto; }
+    figcaption { margin-top:9px; color:var(--muted); font-size:14px; line-height:1.35; text-align:center; }
+    figcaption a { color:var(--muted); }
+    .experience { padding-bottom:52px; }
+    .experience-entry { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px 25px; padding:5px 0 27px; }
+    .experience-entry + .experience-entry { border-top:1px solid var(--rule); padding-top:27px; }
+    .experience-entry h3 { margin-bottom:3px; font-size:22px; }
+    .experience-meta { margin:0 0 9px; color:var(--muted); font-size:15px; font-style:italic; }
+    .experience-entry p:last-child { max-width:690px; margin-bottom:0; }
+    .intern-projects { grid-column:1 / -1; border-top:1px solid var(--rule); margin-top:8px; padding-top:24px; }
+    .intern-projects-heading { margin:0 0 22px; font-size:16px; font-style:italic; color:var(--muted); }
+    .intern-project + .intern-project { border-top:1px solid var(--rule); margin-top:34px; padding-top:31px; }
+    .intern-project h4 { margin:0 0 10px; font-size:22px; line-height:1.2; font-style:italic; font-weight:400; }
+    .intern-project p:not(.project-type) { max-width:690px; margin-bottom:11px; }
+    .intern-project figure { margin-top:19px; }
+    .lab-logo { width:120px; height:auto; margin-top:6px; mix-blend-mode:multiply; }
+    .contact { padding-bottom:68px; }
+    .contact p { margin:0; }
+    .contact-links { display:flex; flex-wrap:wrap; gap:8px 24px; }
+    .site-footer { border-top:1px solid var(--rule); color:var(--muted); font-size:14px; }
+    .site-footer .wrap { display:flex; justify-content:space-between; gap:12px; padding:22px 0 28px; }
+    .site-footer a { color:var(--muted); }
+    @media (max-width:800px) {
+      .intro { grid-template-columns:1fr; }
+      .portrait { width:270px; height:338px; }
+    }
+    @media (max-width:600px) {
+      body { font-size:17px; line-height:1.48; }
+      .wrap { width:min(100% - 36px,820px); }
+      .site-header .wrap { align-items:flex-start; flex-direction:column; justify-content:center; padding:15px 0; gap:6px; }
+      .site-nav { gap:5px 17px; font-size:14px; }
+      .intro { grid-template-columns:1fr; gap:19px; padding:42px 0 46px; }
+      .section { padding-top:30px; }
+      .section-heading { margin-bottom:20px; }
+      h2 { font-size:18px; }
+      h3 { font-size:23px; }
+      .intern-project h4 { font-size:21px; }
+      .project { padding-bottom:40px; }
+      .project + .project { padding-top:35px; }
+      figure img { max-height:400px; }
+      .experience-entry { grid-template-columns:1fr; }
+      .lab-logo { margin-top:0; }
+      .site-footer .wrap { flex-direction:column; gap:2px; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media print { :root { --paper:#fff; } .site-header, .site-footer { display:none; } .wrap { width:100%; } .intro { padding-top:0; } .project, .intern-project { break-inside:avoid; } }
+  </style>
 </head>
-
 <body>
-    <div class="nav">
-        <a href="#about">About</a> ·
-        <a href="#projects">Projects</a> ·
-        <a href="#competitions">Competitions</a> ·
-        <a href="#skills">Skills</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            🌙
-        </button>
+  <header class="site-header" id="top">
+    <div class="wrap">
+      <a class="brand" href="#top">Varun Adinath Patil</a>
+      <nav class="site-nav" aria-label="Primary"><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">Analog electronics · Biosignals · Embedded hardware</p>
+        <h1>Varun Adinath Patil</h1>
+        <p class="lead">I work with small signals and the hardware that makes them useful.</p>
+        <p class="intro-note">Electronics and Telecommunication Engineering student at VJTI, Mumbai. At Upside Down Labs I worked on biosignal acquisition and human–computer interfaces; at SRA VJTI I lead electronics projects and mentor students.</p>
+      </div>
+      <img class="portrait" src="assets/profile.jpeg" alt="Varun Patil at India Gate" width="640" height="640" fetchpriority="high">
     </div>
 
-    <section id="about" class="profile-section">
-        <div class="profile-img">
-            <img src="assets/profile.jpeg" alt="Varun Patil">
+    <section class="section experience" id="experience" aria-labelledby="experience-title">
+      <div class="section-heading"><span class="section-number">01</span><h2 id="experience-title">Experience</h2></div>
+      <div class="experience-entry">
+        <div><h3>Embedded Hardware Intern · Upside Down Labs</h3><p class="experience-meta">Delhi, India · March–August 2026</p><p>Worked on analog design and validation for biosignal hardware, including an automated NPG Lite test jig to check board connections, BioAmplifier operation, and analog signal integrity. The projects below put that signal chain to work.</p></div>
+        <img class="lab-logo" src="assets/upside-down-labs-logo.png" alt="Upside Down Labs logo" width="120" height="28" loading="lazy">
+        <div class="intern-projects" aria-label="Upside Down Labs projects">
+          <p class="intern-projects-heading">Analog biosignal projects at Upside Down Labs</p>
+          <article class="intern-project">
+            <p class="project-type">EOG and EMG acquisition · NPG Lite</p>
+            <h4>Hands-free biosignal mouse</h4>
+            <p>Built a wireless mouse around NPG Lite’s analog BioAmp. Electrodes pick up small eye (EOG) and jaw-muscle (EMG) voltages; the BioAmp conditions those signals for ADC sampling. Blink and jaw-clench gestures become mouse actions, while an IMU tracks head movement and BLE sends the controls to a computer.</p>
+            <div class="project-links"><a href="https://www.youtube.com/watch?v=U4KYTyaF7k8" target="_blank" rel="noopener noreferrer">Watch demonstration</a><a href="https://www.instructables.com/Create-a-Hands-Free-Computer-Mouse-With-Your-Eyes-/" target="_blank" rel="noopener noreferrer">Build guide</a></div>
+            <figure><img src="assets/udl-hands-free-mouse.jpg" alt="Hands-free mouse demonstration using NPG Lite and biosignal electrodes" width="854" height="480" loading="lazy"><figcaption>Fig. 1 — Hands-free mouse demonstration. Image from the <a href="https://www.youtube.com/watch?v=U4KYTyaF7k8" target="_blank" rel="noopener noreferrer">Upside Down Labs video</a>.</figcaption></figure>
+          </article>
+          <article class="intern-project">
+            <p class="project-type">Two-channel analog EMG · Muscle BioAmp Patchy</p>
+            <h4>BioArm Wrestling</h4>
+            <p>Built a two-player game using two Muscle BioAmp Patchy analog front ends. Each amplifies forearm EMG by ×2420 and band-pass filters it from 72–720 Hz before an Arduino samples the signal. Comparing the two channels moves a servo claw; a browser dashboard displays the live waveforms.</p>
+            <div class="project-links"><a href="https://www.youtube.com/watch?v=AjKmngYwXRI" target="_blank" rel="noopener noreferrer">Watch demonstration</a><a href="https://www.instructables.com/Forearam-Wrestling/" target="_blank" rel="noopener noreferrer">Build guide</a><a href="https://github.com/upsidedownlabs/Muscle-BioAmp-Arduino-Firmware/tree/main/14_2CH_EMG_BioArm_Wrestling" target="_blank" rel="noopener noreferrer">Firmware</a></div>
+            <figure><img src="assets/udl-bioarm-wrestling.jpg" alt="Two players testing the EMG controlled BioArm Wrestling game with a servo claw and laptop dashboard" width="854" height="480" loading="lazy"><figcaption>Fig. 2 — Two-channel EMG game in use. Image from the <a href="https://www.youtube.com/watch?v=AjKmngYwXRI" target="_blank" rel="noopener noreferrer">Upside Down Labs video</a>.</figcaption></figure>
+          </article>
         </div>
-
-        <h1>Varun Adinath Patil</h1>
-
-        <p class="subtitle">
-            Student · Embedded Systems Enthusiast
-        </p>
-
-        <p class="location">
-            Mumbai, Maharashtra, India
-        </p>
-
-        <div class="links">
-            <a href="mailto:vap05072006@gmail.com">Email</a>
-            <a href="https://github.com/VarunAPatil">GitHub</a>
-            <!-- <a href="https://www.linke  -->
-        </div>
-
-        <h2>About Me</h2>
-
-        <p>
-            Hi, my name is Varun. I'm a student passionate about embedded systems and hardware design,
-            exploring the intersection of software and hardware. I work with microcontrollers, design PCBs,
-            and write firmware that brings circuits to life. Based in Mumbai, I spend my time coding in C/C++,
-            designing circuits, and figuring out how to make hardware do interesting things.
-        </p>
-
-        <p>
-            My interests span bootloader development, wireless communication protocols, custom development boards,
-            and robotics. The most satisfying moment is when a board I've designed powers on successfully for the first
-            time.
-        </p>
-
-        <p>
-            When I'm not working on projects, I enjoy learning about new embedded
-            technologies, and contributing to open-source hardware projects.
-        </p>
+      </div>
+      <div class="experience-entry">
+        <div><h3>Electronics Head · SRA VJTI</h3><p class="experience-meta">Mumbai, India · November 2025–present</p><p>Lead electronics work for robotics projects and mentor students in electronics through ESP32 workshops, PCB assembly, soldering, and board debugging. Designed Wall-E as a shared platform for learning sensors, motor control, and embedded firmware.</p></div>
+      </div>
     </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="section-heading"><span class="section-number">02</span><h2 id="work-title">Selected work</h2></div>
 
-        <div class="project-item">
-            <p class="project-title">CustomBoot-32</p>
-            <p class="project-date">July 2025 – September 2025</p>
-            <p>
-                A custom development board that receives firmware wirelessly using ESP32 and executes it using STM32.
-                Designed the complete PCB from scratch, implemented a custom bootloader for firmware handling,
-                developed wireless firmware receiving capability with custom file protocols, and integrated CRC32
-                for data validation.
-            </p>
-            <p class="project-links">
-                <a href="https://github.com/avm1234567/Customboot-32/blob/main/Documentation/Final_DOC.pdf">📄
-                    Documentation</a>
-                <a href="https://github.com/avm1234567/Customboot-32">💻 GitHub</a>
-                <a href="https://drive.google.com/file/d/1Z0VfDI0KjEA28zM6vQ-hMSaG2jekwzWR/view?usp=sharing">🎥 Demo</a>
-            </p>
-        </div>
+      <article class="project">
+        <p class="project-type">Development board · SRA VJTI</p>
+        <h3>Wall-E</h3>
+        <p>An ESP32 board for robotics workshops, used by more than 300 students. It brings I²C sensors, motor and servo connections, and protected 12 V → 5 V → 3.3 V power onto one board.</p>
+        <div class="project-links"><a href="https://github.com/SRA-VJTI/Wall-E" target="_blank" rel="noopener noreferrer">Project repository</a></div>
+        <figure><img src="assets/sra-wall-e-v2.7.jpeg" alt="KiCad render of the SRA Wall-E v2.7 development board" width="851" height="635" loading="lazy"><figcaption>Fig. 3 — Wall-E v2.7 board render. <a href="assets/sra-wall-e-v2.7.jpeg" target="_blank" rel="noopener noreferrer">Open full image</a></figcaption></figure>
+      </article>
 
-        <div class="project-item">
-            <p class="project-title">Blue Pill Recreation</p>
-            <p class="project-date">July 2025</p>
-            <p>
-                Recreated the STM32F103C8T6 Blue Pill development board using KiCad to gain hands-on experience
-                with custom PCB design. Features complete STM32F103C8T6 core design with 3.3V operation,
-                on-board 8 MHz crystal oscillator, access headers for UART and I²C communication, and
-                detailed 3D STEP models for visualization.
-            </p>
-            <p class="project-links">
-                <a href="https://github.com/varun05050505/STM32-F103C8T6-BluePill">💻 GitHub</a>
-            </p>
-        </div>
+      <article class="project">
+        <p class="project-type">Wireless firmware delivery · ESP32 and STM32</p>
+        <h3>CustomBoot-32</h3>
+        <p>An ESP32 receives firmware over the air and transfers it to an STM32 over UART. The bootloader checks the image with CRC32 and can select between two firmware slots.</p>
+        <div class="project-links"><a href="https://github.com/avm1234567/Customboot-32" target="_blank" rel="noopener noreferrer">Project repository</a><a href="https://github.com/avm1234567/Customboot-32/blob/main/Documentation/Final_DOC.pdf" target="_blank" rel="noopener noreferrer">Technical report</a><a href="https://drive.google.com/file/d/1Z0VfDI0KjEA28zM6vQ-hMSaG2jekwzWR/view?usp=sharing" target="_blank" rel="noopener noreferrer">Demo</a></div>
+        <figure><img src="assets/Final_PCB.png" alt="Fabricated CustomBoot-32 board with ESP32 module and status LEDs" width="396" height="434" loading="lazy"><figcaption>Fig. 4 — Assembled CustomBoot-32 board. <a href="assets/Final_PCB.png" target="_blank" rel="noopener noreferrer">Open full image</a></figcaption></figure>
+      </article>
 
-        <div class="project-item">
-            <p class="project-title">Maze Solving Bot</p>
-            <p class="project-date">October 2025 – November 2025</p>
-            <p>
-                A line-following bot with PID tuning for accurate path correction in maze navigation.
-                Includes autonomous turn logic and object detection capabilities to push objects into
-                designated areas. Features a web interface for seamless PID tuning, IR sensors for
-                line following and object detection, and intelligent sensor value analysis to detect maze endpoints.
-            </p>
-            <p class="project-links">
-                <a href="https://github.com/varun05050505/Maze-solving-bot">💻 GitHub</a>
-                <a href="https://drive.google.com/file/d/1K7-p1llKeMCBwF9areLBGZYx5-Otd5LE/view?usp=sharing">🎥 Demo</a>
-            </p>
-        </div>
+      <article class="project">
+        <p class="project-type">PCB design · STM32</p>
+        <h3>Blue Pill recreation</h3>
+        <p>A KiCad recreation of the STM32F103C8T6 development board with USB-C, an 8 MHz crystal, boot and reset controls, and programming headers.</p>
+        <div class="project-links"><a href="https://github.com/VarunAPatil/STM32-F103C8T6-BluePill" target="_blank" rel="noopener noreferrer">Project repository</a></div>
+        <figure><img src="assets/3D_View.png" alt="KiCad render of the STM32F103C8T6 development board" width="867" height="579" loading="lazy"><figcaption>Fig. 5 — STM32 board render. <a href="assets/3D_View.png" target="_blank" rel="noopener noreferrer">Open full image</a></figcaption></figure>
+      </article>
+
+      <article class="project">
+        <p class="project-type">Robotics · Control systems</p>
+        <h3>Maze-solving robot</h3>
+        <p>A line-following robot with PID steering, turn logic, and object detection. A local web interface exposes sensor readings and PID values during tuning.</p>
+        <div class="project-links"><a href="https://github.com/VarunAPatil/Maze-solving-bot" target="_blank" rel="noopener noreferrer">Project repository</a><a href="https://drive.google.com/file/d/1K7-p1llKeMCBwF9areLBGZYx5-Otd5LE/view?usp=sharing" target="_blank" rel="noopener noreferrer">Demo</a></div>
+        <figure><img src="assets/bot.jpeg" alt="Maze-solving robot prototype on a workbench" width="1200" height="1600" loading="lazy"><figcaption>Fig. 6 — Robot prototype during testing. <a href="assets/bot.jpeg" target="_blank" rel="noopener noreferrer">Open full image</a></figcaption></figure>
+      </article>
+
+      <article class="project">
+        <p class="project-type">Team project · Environmental monitoring</p>
+        <h3>Multi-sensor rover</h3>
+        <p>A rover and base-station prototype built at Hardware Hackathon 2.0. The team combined sensors, motor control, ESP-NOW communication, and a local SoftAP for monitoring.</p>
+        <div class="project-links"><a href="https://github.com/pushkardube/Hardware-Hackothon-2.0" target="_blank" rel="noopener noreferrer">Project repository</a></div>
+        <figure><img src="assets/rover-prototype.jpeg" alt="Ultrasonic sensor and microcontroller prototype for the multi-sensor rover" width="1280" height="960" loading="lazy"><figcaption>Fig. 7 — Rover sensor prototype. <a href="assets/rover-prototype.jpeg" target="_blank" rel="noopener noreferrer">Open full image</a></figcaption></figure>
+      </article>
+
+      <article class="project">
+        <p class="project-type">Team project · Connected hardware</p>
+        <h3>HackFusion monitoring system</h3>
+        <p>A two-node prototype for patient sensor data and RFID/infrared access monitoring, with alerts and data visualization.</p>
+        <div class="project-links"><a href="https://github.com/VarunAPatil/HackFusion_CustomBoot32" target="_blank" rel="noopener noreferrer">Project repository</a></div>
+        <figure><img src="assets/hackfusion-node-a.webp" alt="3D PCB render of the Node A medical monitoring unit" width="960" height="600" loading="lazy"><figcaption>Fig. 8 — Node A PCB render. <a href="assets/hackfusion-node-a.webp" target="_blank" rel="noopener noreferrer">Open full image</a></figcaption></figure>
+      </article>
     </section>
 
-    <section id="competitions">
-        <h2>Competitions</h2>
-
-        <div class="project-item">
-            <p class="project-title">Hardware Hackathon 2.0, Bangalore</p>
-            <p class="project-date">December 2025</p>
-            <p>
-                Created a base-rover system using Star-Topology wireless communication for a hardware hackathon. The
-                rover was designed to receive commands wirelessly, navigate autonomously, and gather environmental
-                parameters using sensors. Used Ultrasonic sensors ffor terrain mapping and ESP-NOW as the communication
-                protocol along with SoftAP implementation.
-            </p>
-            <p class="project-links">
-                <a href="https://github.com/pushkardube/Hardware-Hackothon-2.0">💻 GitHub</a>
-            </p>
-        </div>
-
-        <div class="project-item">
-            <p class="project-title">HackFusion, SPIT</p>
-            <p class="project-date">February 2026</p>
-            <p>
-                Created ESP32-based health monitoring system with real-time data visualization and alert notifications.
-                Another ESP32-based authenticator using RFID and infrared sensors to count people entering and exiting a
-                room, with data visualization and alert notifications. Used telegram to log activities as well as send
-                alerts and notifications in case of emergency. Established communication with AES-128 encryption.
-            </p>
-            <p class="project-links">
-                <a href="https://github.com/VarunAPatil/HackFusion_CustomBoot32">💻 GitHub</a>
-            </p>
-        </div>
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="section-heading"><span class="section-number">03</span><h2 id="contact-title">Contact</h2></div>
+      <p class="contact-links"><a href="mailto:vap05072006@gmail.com">vap05072006@gmail.com</a><a href="https://github.com/VarunAPatil" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </section>
+  </main>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills">
-            <span>C/C++</span>
-            <span>KiCad</span>
-            <span>STM32</span>
-            <span>ESP32</span>
-            <span>PCB Design</span>
-            <span>Embedded Systems</span>
-            <span>Firmware Development</span>
-        </div>
-    </section>
-
-    <!-- <div class="footer">
-        Last updated: February 2026
-    </div> -->
-    <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById("themeToggle");
-        const body = document.body;
-
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem("theme") || "light";
-        if (currentTheme === "dark") {
-            body.classList.add("dark-mode");
-            themeToggle.textContent = "☀️";
-        }
-
-        themeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
-
-            // Update button icon
-            if (body.classList.contains("dark-mode")) {
-                themeToggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                themeToggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
-        });
-    </script>
+  <footer class="site-footer"><div class="wrap"><span>Varun Adinath Patil · Mumbai, India</span><a href="#top">Back to top ↑</a></div></footer>
 </body>
-
 </html>
