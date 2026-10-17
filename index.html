@@ -260,6 +260,42 @@
       margin-top: 22px;
     }
 
+    .project-media-frame {
+      display: flex;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      align-items: center;
+      justify-content: center;
+      background: #ecebe6;
+    }
+
+    .project-media-frame>img,
+    .project-media-frame>video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      object-fit: contain;
+    }
+
+    .project-media-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      width: 100%;
+      max-width: 690px;
+      margin: 22px auto 0;
+    }
+
+    .project-media-pair figure {
+      min-width: 0;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
+
     figure img {
       width: auto;
       height: auto;
@@ -456,6 +492,10 @@
         padding-top: 35px;
       }
 
+      .project-media-pair {
+        grid-template-columns: 1fr;
+      }
+
       figure img {
         max-height: 400px;
       }
@@ -619,7 +659,6 @@
           </figcaption>
         </figure>
       </article>
-
       <article class="project">
         <p class="project-type">Development board · SRA VJTI</p>
         <h3>Wall-E</h3>
@@ -633,7 +672,6 @@
               rel="noopener noreferrer">Open full image</a></figcaption>
         </figure>
       </article>
-
       <article class="project">
         <p class="project-type">Wireless firmware delivery · ESP32 and STM32</p>
         <h3>CustomBoot-32</h3>
@@ -651,21 +689,62 @@
               rel="noopener noreferrer">Open full image</a></figcaption>
         </figure>
       </article>
-
-      <article class="project">
-        <p class="project-type">PCB design · STM32</p>
-        <h3>Blue Pill recreation</h3>
-        <p>A KiCad recreation of the STM32F103C8T6 development board with USB-C, an 8 MHz crystal, boot and reset
-          controls, and programming headers.</p>
-        <div class="project-links"><a href="https://github.com/VarunAPatil/STM32-F103C8T6-BluePill" target="_blank"
+      <article class="project" id="musicplayer-s3">
+        <p class="project-type">Linux audio visualizer · ESP32-S3 · ESP-IDF</p>
+        <h3>MusicPlayer-S3</h3>
+        <p>A Linux host captures system audio, computes an eight-band FFT, and sends bar heights to an ESP32-S3 and
+          MAX7219 matrix over USB NCM or Wi-Fi UDP. The wired firmware also supports synced lyrics and a reduced live
+          video feed on an OLED.</p>
+        <div class="project-links"><a href="https://github.com/VarunAPatil/MusicPlayer-S3" target="_blank"
             rel="noopener noreferrer">Project repository</a></div>
-        <figure><img src="assets/3D_View.png" alt="KiCad render of the STM32F103C8T6 development board" width="867"
-            height="579" loading="lazy">
-          <figcaption>Fig. 7 — STM32 board render. <a href="assets/3D_View.png" target="_blank"
+        <div class="project-media-pair">
+          <figure>
+            <div class="project-media-frame"><img src="assets/musicplayer-s3-gui.png"
+                alt="MusicPlayer-S3 desktop launcher for its visualizer modes" width="760" height="650" loading="lazy">
+            </div>
+            <figcaption>MusicPlayer-S3 desktop launcher for wired and wireless visualizer modes. <a
+                href="assets/musicplayer-s3-gui.png" target="_blank" rel="noopener noreferrer">Open full image</a></figcaption>
+          </figure>
+          <figure>
+            <div class="project-media-frame"><video id="musicplayer-s3-demo" controls autoplay loop playsinline preload="auto"
+                poster="assets/musicplayer-s3-demo-poster.png" aria-label="ESP32-S3 visualizer running on the hardware">
+              <source src="assets/musicplayer-s3-hardware-demo.mp4" type="video/mp4">
+              Your browser does not support the video element.
+              </video></div>
+            <figcaption>Short demonstration of the ESP32-S3 board, OLED, and MAX7219 matrix working together. If your
+              browser blocks autoplay with sound, press play to start. <a
+                href="assets/musicplayer-s3-hardware-demo.mp4" target="_blank" rel="noopener noreferrer">Open video</a>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+      <article class="project">
+        <p class="project-type">Team project · Environmental monitoring</p>
+        <h3>Multi-sensor rover</h3>
+        <p>A rover and base-station prototype built at Hardware Hackathon 2.0. The team combined sensors, motor control,
+          ESP-NOW communication, and a local SoftAP for monitoring.</p>
+        <div class="project-links"><a href="https://github.com/pushkardube/Hardware-Hackothon-2.0" target="_blank"
+            rel="noopener noreferrer">Project repository</a></div>
+        <figure><img src="assets/rover-prototype.jpeg"
+            alt="Ultrasonic sensor and microcontroller prototype for the multi-sensor rover" width="1280" height="960"
+            loading="lazy">
+          <figcaption>Fig. 9 — Rover sensor prototype. <a href="assets/rover-prototype.jpeg" target="_blank"
               rel="noopener noreferrer">Open full image</a></figcaption>
         </figure>
       </article>
-
+      <article class="project">
+        <p class="project-type">Team project · Connected hardware</p>
+        <h3>HackFusion monitoring system</h3>
+        <p>A two-node prototype for patient sensor data and RFID/infrared access monitoring, with alerts and data
+          visualization.</p>
+        <div class="project-links"><a href="https://github.com/VarunAPatil/HackFusion_CustomBoot32" target="_blank"
+            rel="noopener noreferrer">Project repository</a></div>
+        <figure><img src="assets/hackfusion-node-a.webp" alt="3D PCB render of the Node A medical monitoring unit"
+            width="960" height="600" loading="lazy">
+          <figcaption>Fig. 10 — Node A PCB render. <a href="assets/hackfusion-node-a.webp" target="_blank"
+              rel="noopener noreferrer">Open full image</a></figcaption>
+        </figure>
+      </article>
       <article class="project">
         <p class="project-type">Robotics · MuJoCo · Reinforcement learning</p>
         <h3>RoboBalance</h3>
@@ -683,7 +762,19 @@
           </figcaption>
         </figure>
       </article>
-
+      <article class="project">
+        <p class="project-type">PCB design · STM32</p>
+        <h3>Blue Pill recreation</h3>
+        <p>A KiCad recreation of the STM32F103C8T6 development board with USB-C, an 8 MHz crystal, boot and reset
+          controls, and programming headers.</p>
+        <div class="project-links"><a href="https://github.com/VarunAPatil/STM32-F103C8T6-BluePill" target="_blank"
+            rel="noopener noreferrer">Project repository</a></div>
+        <figure><img src="assets/3D_View.png" alt="KiCad render of the STM32F103C8T6 development board" width="867"
+            height="579" loading="lazy">
+          <figcaption>Fig. 7 — STM32 board render. <a href="assets/3D_View.png" target="_blank"
+              rel="noopener noreferrer">Open full image</a></figcaption>
+        </figure>
+      </article>
       <article class="project">
         <p class="project-type">Robotics · Control systems</p>
         <h3>Maze-solving robot</h3>
@@ -696,35 +787,6 @@
         <figure><img src="assets/bot.jpeg" alt="Maze-solving robot prototype on a workbench" width="1200" height="1600"
             loading="lazy">
           <figcaption>Fig. 8 — Robot prototype during testing. <a href="assets/bot.jpeg" target="_blank"
-              rel="noopener noreferrer">Open full image</a></figcaption>
-        </figure>
-      </article>
-
-      <article class="project">
-        <p class="project-type">Team project · Environmental monitoring</p>
-        <h3>Multi-sensor rover</h3>
-        <p>A rover and base-station prototype built at Hardware Hackathon 2.0. The team combined sensors, motor control,
-          ESP-NOW communication, and a local SoftAP for monitoring.</p>
-        <div class="project-links"><a href="https://github.com/pushkardube/Hardware-Hackothon-2.0" target="_blank"
-            rel="noopener noreferrer">Project repository</a></div>
-        <figure><img src="assets/rover-prototype.jpeg"
-            alt="Ultrasonic sensor and microcontroller prototype for the multi-sensor rover" width="1280" height="960"
-            loading="lazy">
-          <figcaption>Fig. 9 — Rover sensor prototype. <a href="assets/rover-prototype.jpeg" target="_blank"
-              rel="noopener noreferrer">Open full image</a></figcaption>
-        </figure>
-      </article>
-
-      <article class="project">
-        <p class="project-type">Team project · Connected hardware</p>
-        <h3>HackFusion monitoring system</h3>
-        <p>A two-node prototype for patient sensor data and RFID/infrared access monitoring, with alerts and data
-          visualization.</p>
-        <div class="project-links"><a href="https://github.com/VarunAPatil/HackFusion_CustomBoot32" target="_blank"
-            rel="noopener noreferrer">Project repository</a></div>
-        <figure><img src="assets/hackfusion-node-a.webp" alt="3D PCB render of the Node A medical monitoring unit"
-            width="960" height="600" loading="lazy">
-          <figcaption>Fig. 10 — Node A PCB render. <a href="assets/hackfusion-node-a.webp" target="_blank"
               rel="noopener noreferrer">Open full image</a></figcaption>
         </figure>
       </article>
@@ -742,6 +804,21 @@
   <footer class="site-footer">
     <div class="wrap"><span>Varun Adinath Patil · Mumbai, India</span><a href="#top">Back to top ↑</a></div>
   </footer>
+  <script>
+    const hardwareDemo = document.getElementById("musicplayer-s3-demo");
+    if (hardwareDemo && "IntersectionObserver" in window) {
+      const demoVisibility = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            hardwareDemo.play().catch(() => {});
+          } else {
+            hardwareDemo.pause();
+          }
+        }
+      }, { threshold: 0.25 });
+      demoVisibility.observe(hardwareDemo);
+    }
+  </script>
 </body>
 
 </html>
