@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CustomBoot-32: Designing a custom PCB with OTA support and a dual-image bootloader.">
+  <meta name="theme-color" content="#faf9f6">
+  <title>CustomBoot-32 — Varun Adinath Patil</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=2">
+  <link rel="icon" href="../assets/Varun.ico?v=2" sizes="16x16 24x24 32x32 48x48 64x64">
+  <script>try { if (localStorage.getItem("portfolio-theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (_) {}</script>
+  <script src="../assets/theme.js" defer></script>
+  <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Varun Adinath Patil</a>
+      <nav class="site-nav" aria-label="Primary"><a href="../index.html#experience">Experience</a><a href="../index.html#work">Projects</a><a href="index.html" aria-current="page">Blogs</a><a href="../index.html#contact">Contact</a></nav>
+      <button class="theme-toggle" type="button" role="switch" aria-label="Dark mode" aria-checked="false"><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-knob"></span></span><span>Dark mode</span></button>
+    </div>
+  </header>
+
+  <main>
+    <article class="article-wrap">
+      <a class="back-link" href="index.html">← All blog posts</a>
+      <div class="post original-post">
+
+<h1 class="post-title">CustomBoot-32</h1>
+<div class="post-tags">
+<a class="tag" href="/tag/embedded-c/">embedded-c</a>
+<a class="tag" href="/tag/pcb-design/">pcb-design</a>
+<a class="tag" href="/tag/bootloaders/">bootloaders</a>
+<a class="tag" href="/tag/ota/">ota</a>
+<a class="tag" href="/tag/uart/">uart</a>
+</div>
+<div class="post-date">Published on 20 Aug 2025</div>
+<div class="post-description">Designing a custom PCB with OTA support and a dual-image bootloader</div>
+<figure class="article-figure demo-video">
+  <video controls muted playsinline preload="metadata" poster="../assets/Final_PCB.png"
+    aria-label="CustomBoot-32 full working demo">
+    <source src="../assets/blogs/customboot-32/working-demo.mp4" type="video/mp4">
+    Your browser does not support the video element.
+  </video>
+  <figcaption>Full working demo, muted by default. <a href="https://drive.google.com/file/d/1Z0VfDI0KjEA28zM6vQ-hMSaG2jekwzWR/view?usp=sharing">Open in Google Drive</a></figcaption>
+</figure>
+<figure class="article-figure">
+  <img alt="Fabricated CustomBoot-32 board with ESP32 module and status LEDs" src="../assets/Final_PCB.png">
+  <figcaption>Assembled CustomBoot-32 board</figcaption>
+</figure>
+<h2 id="progress-report-weeks-12">Progress Report (Weeks 1&ndash;2)</h2>
+<p>During the <strong>first week</strong> of Eklavya, our focus was mainly on completing the prerequisites of the project, as we did not yet have access to the hardware. Most of this time was dedicated to brainstorming with the resources provided by our mentors. We referred to <a href="https://youtu.be/vaCVh2SAZY4?si=P55ba3Obu3_-rc_V">this playlist</a>, which explained the entire workflow of PCB design using KiCad. Additionally, we studied <a href="https://youtu.be/aVUqaB0IMh4?si=N4PDonKOkEUr_ZC0">this video</a>, which gave us insights into how real development boards, such as the <strong>STM32 Blue Pill</strong>, are designed in KiCad.</p>
+<p>In the <strong>second week</strong>, we transitioned to working on the actual schematics of our custom PCB. For this, we carefully referred to the following documents and datasheets:</p>
+<p><a href="https://www.digikey.in/en/htmldatasheets/production/3267269/0/0/1/esp32-devkitc-32d">ESP32 datasheet</a></p>
+<p><a href="https://www.st.com/resource/en/datasheet/stm32f103c8.pdf">STM32F103C8T6 datasheet</a></p>
+<p><a href="https://www.digikey.in/htmldatasheets/production/121410/0/0/1/cp2102-gm.html">CP2102 datasheet</a></p>
+<p><a href="https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5011/AMS1117.pdf">AMS1117 datasheet</a></p>
+<p><img alt="CustomBoot-32 schematic, part 1" src="../assets/blogs/customboot-32/sch1.png"/></p>
+<p><img alt="CustomBoot-32 schematic, part 2" src="../assets/blogs/customboot-32/sch2.png"/></p>
+<p><em>CustomBoot-32 schematic</em></p>
+<h2 id="progress-report-weeks-34">Progress Report (Weeks 3&ndash;4)</h2>
+<h3 id="ota">OTA</h3>
+<p>Once we completed the schematic, we received the hardware components, including the ESP and STM Blue Pill. We decided to begin with the software aspect of our project, focusing on <strong>OTA firmware transfer from a laptop to the ESP</strong>. To facilitate firmware storage on the ESP, we created a  <a href="https://github.com/avm1234567/Customboot-32/blob/varun/OTA/partitions.csv">custom partition table</a> that divides the flash memory into multiple partitions. The final partition, labeled <code class="language-plaintext highlighter-rouge">"storage"</code>, is dedicated to the <strong>file system</strong>. We chose <strong>SPIFFS</strong> for this purpose because it is lightweight, easy to use, and ideal for small-scale file management on resource-constrained devices.</p>
+<p>For the file upload interface, we made an <a href="https://github.com/avm1234567/Customboot-32/blob/varun/OTA/spiffs/index.html">index.html</a> page that provides a simple form for uploading two firmware files. The ESP code performs several key functions: it connects to Wi-Fi, initializes SPIFFS on the storage partition, hosts the web interface on the assigned IP address, and handles the reception of binary files uploaded via the website.</p>
+<p><a href="https://github.com/avm1234567/Customboot-32/blob/varun/OTA/main/main.c">OTA code</a></p>
+<h3 id="uart">UART</h3>
+<p>UART communication between ESP and STM is the second important target after OTA in our project. Initially, we tried to establish communication between ESP and STM, but it did not work. So we tested the UART interfaces of ESP and STM individually using a <strong>loopback test</strong>.
+Then we established duplex UART communication between both boards. All the code is provided below:</p>
+<p><a href="https://github.com/avm1234567/Customboot-32/tree/archit/esp_loopback_test">ESP loopback test</a></p>
+<p><a href="https://github.com/avm1234567/Customboot-32/tree/varun/ESP_STM_UART1">ESP-to-STM one-way UART</a></p>
+<p><a href="https://github.com/avm1234567/Customboot-32/tree/varun/ESP_STM_UART2">ESP-to-STM two-way UART</a></p>
+<h3 id="simple-bootloader">Simple Bootloader</h3>
+<p>Before creating the final bootloader, we tested a simple bootloader that checks the <strong>state of the PA0 pin</strong> and accordingly switches between two applications residing at two different starting addresses.
+Refer to <a href="https://github.com/avm1234567/Customboot-32/tree/varun/Dual_Image_Bootloader">this repository</a> for the full code and test applications. Make sure you read the applications&rsquo; vector offsets and flash them to their respective start addresses.</p>
+<h2 id="progress-report-weeks-56">Progress Report (Weeks 5&ndash;6)</h2>
+<h3 id="binary-file-transfer-from-esp-to-stm-using-file-protocol">Binary file transfer from ESP to STM using File Protocol</h3>
+<p>During weeks 3&ndash;4, we successfully tested and established UART communication between the ESP and the STM. Our next objective was to transfer binary files from the ESP&rsquo;s SPIFFS to the STM&rsquo;s flash memory. To accomplish this, we designed a <strong>Custom File Protocol.</strong> Although we reviewed several existing file transfer protocols, we opted to develop our own in order to gain finer control over how data is transmitted via UART. For additional details, refer to our <a href="https://www.notion.so/Esp-to-Stm-File-transfer-File-Protocol-2438c356155f8017bc71f075e02f5cac">Notion notes</a> on this topic.</p>
+<p><strong>Our custom chunk structure (file protocol):</strong></p>
+<p><code class="language-plaintext highlighter-rouge">[START (1 byte)] [LENGTH (2 bytes)] [DATA (512 bytes)] [CRC32 (4 bytes)] [END (1 byte)]</code></p>
+<h3 id="default-application">Default Application</h3>
+<p>To ensure system reliability, we reserved space in flash memory for a default application located below the main firmware. This application is a simple rapid LED blink program. Its purpose is to act as a fallback in case the user forgets to upload firmware to the ESP via OTA and directly requests the ESP to forward firmware to the STM. In such a scenario, the ESP has nothing valid to transmit, and the system could otherwise enter a hang state. To prevent this, the ESP instead sends a <strong>fail-safe chunk</strong> to the STM. The STM&rsquo;s bootloader validates this chunk and, upon detection, executes the default application&mdash;providing a clear visual indication to the user that something went wrong.</p>
+<h3 id="crc32">CRC32</h3>
+<p><strong>CRC32 (Cyclic Redundancy Check 32-bit)</strong> is an error-detecting code commonly used to verify data integrity in digital communications and storage.</p>
+<p>On the STM side, hardware CRC32 registers are available. When a 32-bit word is fed into the CRC32 register, it produces a checksum value. If another 32-bit word is subsequently provided without resetting the register, the checksum accumulates across both values. Using this mechanism, we feed the entire 512-byte chunk received from the ESP word by word. At the end of this process, the STM generates the CRC32 checksum for the entire chunk. Refer to <a href="https://github.com/avm1234567/Customboot-32/blob/a2e9b7c672e7306225e5a45dbd3d18ca81f498fd/ESP_STM_FILE_CRC/Bootloader_C8TX/src/main.c#L43">this section of the bootloader</a> for the exact implementation.</p>
+<p>On the ESP side, hardware CRC32 is not available. Therefore, we implemented a <strong>software-based CRC32 calculation</strong>, which replicates the same operations performed by the STM&rsquo;s hardware. You can find the complete implementation <a href="https://github.com/avm1234567/Customboot-32/blob/a2e9b7c672e7306225e5a45dbd3d18ca81f498fd/ESP_STM_FILE_CRC/OTA/main/main.c#L269">here</a>.</p>
+<p>As specified in our file protocol, the 4 bytes following the data field are reserved for the CRC32 value, which is transmitted from the ESP to the STM. The STM compares its computed checksum with the received one, and only if both values match does it send an <strong>acknowledgement string</strong> to the ESP, prompting the transfer of the next chunk.</p>
+<h3 id="libopencm3">LibOpenCM3</h3>
+<p>Our STM32F103C8T6 has only 64 KB of flash memory, making it essential for the bootloader to be highly optimized for size. The earlier version of our bootloader was written entirely using HAL libraries, which added unnecessary bloat, introduced slower execution, and caused the bootloader size to exceed 15 KB&mdash;about <strong>25% of the total flash space!</strong></p>
+<p>To address this, we migrated the entire codebase from HAL to <strong>LibOpenCM3</strong>, which provides direct access to register-level operations while maintaining good code readability. This shift eliminated the HAL overhead, significantly reducing both size and complexity.</p>
+<p>You can explore our LibOpenCM3-based bootloader <a href="https://github.com/avm1234567/Customboot-32/tree/varun/ESP_STM_FILE_CRC/Bootloader_C8TX">here</a>. Remarkably, this version of the bootloader is under <strong>2 KB</strong>, representing a massive improvement in efficiency.</p>
+<p>For a more detailed explanation, refer to our <a href="https://www.notion.so/LibOpenCM3-2478c356155f80a6afcfc1611a41d326">Notion notes on LibOpenCM3</a>.</p>
+<h2 id="progress-report-weeks-78">Progress Report (Weeks 7&ndash;8)</h2>
+<h3 id="perfboard-testing">Perfboard Testing</h3>
+<p>Our firmware is now complete, and the schematic has also been finalized. The next step was to test the circuit on a perfboard to verify its functionality. During this process, we discovered several errors in the schematic.</p>
+<h3 id="issues-identified">Issues Identified</h3>
+<p><strong>STM32 Powering Issue</strong></p>
+<p>When we first soldered the <strong>SoC</strong> onto the <strong>breakout board</strong>, it failed to connect to the <strong>STM32 CubeProgrammer.</strong></p>
+<p>After troubleshooting, we realized that we had not provided power to <strong>VDDA</strong> and <strong>VSSA</strong> pins, assuming they were unnecessary since we were not using any analog features. In reality, these pins are essential for proper powering of the STM32, and their omission caused the device to power up incorrectly.</p>
+<p><strong>ESP UART1 Pin Mapping</strong></p>
+<p>We also identified a mistake in the UART1 configuration of the ESP module, where the wrong GPIO pins had been assigned. After correcting this, communication was established successfully.</p>
+<h3 id="successful-testing">Successful Testing</h3>
+<p>After fixing these issues, we tested our previously written code on the perfboard-based circuit, and it worked flawlessly.</p>
+<p><a href="https://drive.google.com/file/d/1SP9IA6iG8lHjdz1XjbkrW86w_i9Vo2Ad/view?usp=sharing">Watch the perfboard test</a></p>
+<h3 id="pcb-routing-and-gerber-file-generation">PCB Routing and Gerber File Generation</h3>
+<p>Another major step in preparing our PCB for fabrication was <strong>routing the board</strong> and generating the <a href="https://drive.google.com/file/d/1XeakQWj5FKYVasDnnbstgLmBvl30qeD6/view?usp=drive_link">Gerber files</a>.
+To ensure compatibility with the manufacturer, we referred to the hardware design constraints specified on the <a href="https://www.lioncircuits.com/pcb-manufacturing-capabilities/rigid-pcb?utm_source=chatgpt.com">LionCircuits official website</a>.</p>
+<p>Additionally, we integrated <strong>3D component models</strong> into our KiCad project, which allowed us to review the board in <strong>3D visualization mode.</strong>
+This step was particularly useful for verifying component placement, orientation, and overall mechanical fit before moving forward with fabrication.</p>
+<div class="pcb-image-pair">
+<img alt="Front view of the CustomBoot-32 PCB" src="../assets/blogs/customboot-32/PCBSC1.png"/>
+<img alt="Back view of the CustomBoot-32 PCB" src="../assets/blogs/customboot-32/PCBSC2.png"/>
+</div>
+<p><em>Front and back views of the routed PCB</em></p>
+<p><a href="https://drive.google.com/file/d/1Z0VfDI0KjEA28zM6vQ-hMSaG2jekwzWR/view">Watch the full working demo</a></p>
+<h2 id="references">References</h2>
+<p><a href="https://github.com/SurajSonawane2415/USB-OTA-Bootloader-Integrated-Custom-STM-Board">Reference project</a></p>
+<p><a href="https://embeddedinventor.com/embedded-bootloader-and-booting-process-explained/">Bootloader</a></p>
+<p><a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/esp_https_ota.html">OTA</a></p>
+<p><a href="https://www.youtube.com/watch?si=apB8K7ngO-cd8fAq&amp;v=EaZuKRSvwdo&amp;feature=youtu.be">STM32</a></p>
+
+      </div>
+    </article>
+  </main>
+</body>
+
+</html>
