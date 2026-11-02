@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How I designed the SRA VJTI Wall-E development board, bringing power, motor control, and sensors together for robotics workshops.">
+  <meta name="theme-color" content="#faf9f6">
+  <title>Building the SRA Wall-E Board — Varun Adinath Patil</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=2">
+  <link rel="icon" href="../assets/Varun.ico?v=2" sizes="16x16 24x24 32x32 48x48 64x64">
+  <script>try { if (localStorage.getItem("portfolio-theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (_) {}</script>
+  <script src="../assets/theme.js" defer></script>
+  <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">Varun Adinath Patil</a>
+      <nav class="site-nav" aria-label="Primary"><a href="../index.html#experience">Experience</a><a href="../index.html#work">Projects</a><a href="index.html" aria-current="page">Blogs</a><a href="../index.html#contact">Contact</a></nav>
+      <button class="theme-toggle" type="button" role="switch" aria-label="Dark mode" aria-checked="false"><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-knob"></span></span><span>Dark mode</span></button>
+    </div>
+  </header>
+
+  <main>
+    <article class="article-wrap">
+      <a class="back-link" href="index.html">← All blog posts</a>
+      <p class="eyebrow">SRA VJTI · PCB design · Embedded systems</p>
+      <h1>Building the SRA Wall-E development board</h1>
+      <p class="article-lead">I designed a shared hardware platform for SRA VJTI’s Wall-E robotics workshops, bringing the ESP32-S3, motor control, sensors, and power regulation together on one board.</p>
+
+      <figure class="article-figure">
+        <img src="../assets/sra-wall-e-v2.8.png" alt="3D render of the SRA VJTI Wall-E ESP32-S3 development board" width="1160" height="931" fetchpriority="high">
+        <figcaption>Wall-E development board, revision 2.8. <a href="https://github.com/VarunAPatil/Wall-E-2027-Board-Design/tree/sra-board-s3" target="_blank" rel="noopener noreferrer">Open the design repository</a>.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h2>One board for the whole robot</h2>
+        <p>Wall-E is SRA VJTI’s educational robot for introducing students to embedded systems and robotics. For workshops, a collection of separate development boards and loose wires makes it harder to focus on firmware and control. I wanted the core electronics to be available from one platform, with the controller, power, motor driver, and commonly used sensors connected in a predictable way.</p>
+        <p>The board is built around an ESP32-S3 and a two-layer PCB. Its connectors bring out the interfaces needed for robot builds, while the onboard peripherals support hands-on exercises in sensing, motor control, and display output.</p>
+
+        <h2>Power designed in stages</h2>
+        <p>Robotics hardware combines loads with very different needs. The motors need a higher-voltage supply, while the microcontroller and sensors need regulated logic rails. The board routes battery power through protection and a 12 V motor rail, then uses a TPS54302 buck stage to generate 5 V. An AMS1117 provides 3.3 V for the ESP32-S3 and logic-level peripherals. USB-C also provides a route for 5 V power and programming.</p>
+        <p>I exposed test points along the supply path so the rails can be checked one stage at a time: battery input, 12 V, protected 5 V, then 3.3 V. That makes bring-up and fault isolation much more systematic than probing an interconnected board at random.</p>
+
+        <h2>Interfaces for robotics exercises</h2>
+        <p>The board connects a TB6612FNG motor driver to the controller and includes the interfaces used by common Wall-E exercises: an LSA for line sensing, an MPU6050 for motion data, an OLED, and a MAX7219-driven LED matrix. The goal was to make these blocks easy to reach from firmware without rebuilding the wiring for every workshop.</p>
+        <p>That integration also makes the board useful beyond one robot demonstration. Students can start with a sensor or display example, then move toward motor control and complete robot behavior while staying on familiar hardware.</p>
+
+        <h2>Designing for assembly and debugging</h2>
+        <p>Combining power conversion, a wireless microcontroller, motor outputs, and sensor connectors means the layout has to balance electrical paths with physical access. Connector placement affects how the robot is wired; component placement affects whether power and signal sections can be inspected; test points make the power system easier to understand during assembly.</p>
+        <p>I iterated the board as those requirements became clearer, including the board-to-sensor connections and the placement of the main functional blocks. The final result is a compact platform that supports both the robot and the way students learn to build it.</p>
+
+        <h2>What I took away</h2>
+        <p>This project taught me to think of a PCB as part of a larger system. A useful workshop board has to make power distribution, peripherals, physical connections, and debugging work together. The design supports the SRA Wall-E workshop platform used by more than 300 students, so clarity and repeatability matter alongside circuit function.</p>
+        <p>As Electronics Head at SRA VJTI, I also mentor students using the platform. Seeing where people connect, probe, and get stuck feeds back into how I think about the next hardware revision.</p>
+
+        <p class="article-end">The schematics and board files are available in the <a href="https://github.com/VarunAPatil/Wall-E-2027-Board-Design/tree/sra-board-s3" target="_blank" rel="noopener noreferrer">SRA board design repository</a>. See also the <a href="../index.html#work">project overview</a>.</p>
+      </div>
+    </article>
+  </main>
+</body>
+
+</html>
