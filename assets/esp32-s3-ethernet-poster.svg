@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">ESP32-S3 USB Ethernet bridge</title>
+  <desc id="desc">A laptop connects by USB NCM to an ESP32-S3, which forwards traffic over 2.4 GHz Wi-Fi to an access point.</desc>
+  <rect width="960" height="540" fill="#faf9f6"/>
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#222522">
+    <text x="74" y="89" font-size="31" font-weight="bold">ESP32-S3 USB Ethernet</text>
+    <text x="74" y="121" font-size="17" fill="#626760">A USB network interface bridged to Wi-Fi</text>
+    <g fill="none" stroke="#d9d9d2" stroke-width="2">
+      <rect x="74" y="194" width="226" height="150"/>
+      <rect x="367" y="194" width="226" height="150"/>
+      <rect x="660" y="194" width="226" height="150"/>
+      <path d="M300 269h67M593 269h67"/>
+    </g>
+    <g text-anchor="middle">
+      <text x="187" y="254" font-size="25">Laptop</text>
+      <text x="187" y="286" font-size="15" fill="#626760">USB network interface</text>
+      <text x="480" y="254" font-size="25">ESP32-S3</text>
+      <text x="480" y="286" font-size="15" fill="#626760">TinyUSB + ESP-IDF</text>
+      <text x="773" y="254" font-size="25">Wi-Fi router</text>
+      <text x="773" y="286" font-size="15" fill="#626760">DHCP server</text>
+      <text x="333" y="246" font-size="13" fill="#244b69">USB NCM</text>
+      <text x="627" y="246" font-size="13" fill="#244b69">2.4 GHz</text>
+    </g>
+    <path d="M74 420h812" stroke="#d9d9d2"/>
+    <text x="74" y="459" font-size="17" fill="#626760">Recorded demonstration: USB connection and laptop speed test</text>
+  </g>
+</svg>

@@ -334,6 +334,10 @@
       background: var(--media-paper);
     }
 
+    .project-media-frame.ethernet-media-frame {
+      aspect-ratio: 16 / 9;
+    }
+
     .project-media-frame>img,
     .project-media-frame>video {
       display: block;
@@ -792,6 +796,24 @@
             </figcaption>
           </figure>
         </div>
+      </article>
+      <article class="project" id="esp32-s3-ethernet">
+        <p class="project-type">USB NCM · Wi-Fi bridge · ESP32-S3</p>
+        <h3>ESP32-S3 USB Ethernet</h3>
+        <p>Built an ESP32-S3 adapter that presents a USB Ethernet interface to a laptop and forwards its traffic over
+          2.4 GHz Wi-Fi. The laptop receives its address from the router through the bridge. In four 20 MB transfer
+          tests on one board and laptop setup, measured throughput was 5.30–6.59 Mb/s.</p>
+        <div class="project-links"><a href="https://github.com/VarunAPatil/ESP32-S3_Ethernet" target="_blank"
+            rel="noopener noreferrer">Project repository</a></div>
+        <figure>
+          <div class="project-media-frame ethernet-media-frame"><video controls playsinline preload="metadata"
+              poster="assets/esp32-s3-ethernet-poster.svg" aria-label="ESP32-S3 USB Ethernet connection and speed-test demonstration">
+              <source src="assets/esp32-s3-usb-ethernet-demo.mp4" type="video/mp4">
+              Your browser does not support the video element.
+            </video></div>
+          <figcaption>USB connection and laptop speed-test demonstration. <a
+              href="assets/esp32-s3-usb-ethernet-demo.mp4" target="_blank" rel="noopener noreferrer">Open video</a></figcaption>
+        </figure>
       </article>
       <article class="project">
         <p class="project-type">Team project · Environmental monitoring</p>
